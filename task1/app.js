@@ -11,8 +11,9 @@ app.use('/public', express.static(__dirname + '/public'));
 const port = 8080;
 
 //ルーティングのインポート
-app.use('/', require('./routes/index.js'));
-app.use('/login', require('./routes/index.js'));
+const routingPage = require('./routes/index');
+app.use('/', routingPage);
+app.use('/login', routingPage);
 
 app.listen(port, () => {
     console.log(`サーバを起動しました。（ポート番号: ${port}）`);
