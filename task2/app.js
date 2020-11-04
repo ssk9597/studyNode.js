@@ -32,7 +32,7 @@ mongoose.connect('mongodb://localhost/node_task2', {
 //routing
 app.get('/', indexController);
 app.get('/login', loginController);
-app.get('/register', validationMiddleware, registerController);
+app.get('/register', registerController);
 
 //post
 app.post('/users/register', storeRegisterController);
