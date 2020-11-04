@@ -13,12 +13,19 @@
                     <div class="w-9/12 border bg-white">
                         <div class="my-16 text-center">
                             <h2 class="text-4xl font-bold">新規登録</h2>
-                            <form class="mt-12">
+                            <form
+                                action="/users/register"
+                                method="POST"
+                                enctype="multipart/form-data"
+                                class="mt-12"
+                            >
                                 <div class="mb-3">
                                     <input
                                         type="text"
                                         placeholder="ユーザー名"
                                         class="text-xl w-7/12 p-3 border rounded"
+                                        name="username"
+                                        id="username"
                                     />
                                 </div>
                                 <div class="mb-3">
@@ -26,13 +33,17 @@
                                         type="email"
                                         placeholder="you@gmail.com"
                                         class="text-xl w-7/12 p-3 border rounded"
+                                        name="email"
+                                        id="email"
                                     />
                                 </div>
                                 <div class="mb-3">
                                     <input
                                         type="password"
-                                        placeholder="パスワード(6文字以上)"
+                                        placeholder="パスワード(7文字以上)"
                                         class="text-xl w-7/12 p-3 border rounded"
+                                        name="password"
+                                        id="password"
                                     />
                                 </div>
                                 <div class="mb-8">
@@ -40,13 +51,15 @@
                                         type="password"
                                         placeholder="パスワードの確認"
                                         class="text-xl w-7/12 p-3 border rounded"
+                                        name="confirmPassword"
+                                        id="confirmPassword"
                                     />
                                 </div>
                                 <button
                                     type="submit"
                                     class="text-xl w-4/12 bg-blue-800 text-white py-2 rounded hover:opacity-75"
                                 >
-                                    <a href="/"> 登録 </a>
+                                    登録
                                 </button>
                             </form>
                         </div>
