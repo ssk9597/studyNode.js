@@ -27,6 +27,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //DB接続（データベース名：node_task2）
 mongoose.connect('mongodb://localhost/node_task2', {
     useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true,
 });
 
 //routing
