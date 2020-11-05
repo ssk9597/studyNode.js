@@ -6,7 +6,7 @@ module.exports = (req, res) => {
     username = '';
 
     //validation
-    const abovePassword = req.body.password.length >= 7 && req.body.confirmPassword >= 7;
+    const abovePassword = req.body.password.length >= 7 && req.body.confirmPassword.length >= 7;
     const matchPassword = req.body.password == req.body.confirmPassword;
     const allInput =
         req.body.name != '' &&
