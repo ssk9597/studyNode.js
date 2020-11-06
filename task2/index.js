@@ -10,6 +10,9 @@ const pageLoginController = require('./controllers/pageLogin');
 const pageRegisterController = require('./controllers/pageRegister');
 const storeRegisterController = require('./controllers/storeRegister');
 
+//middleware
+const validationMiddleware = require('./middleware/validation');
+
 //global
 global.errorMessage = [];
 global.username = '';
@@ -25,6 +28,8 @@ app.use('/public', express.static(__dirname + '/public'));
 //moduleUse
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 //DB
 mongoose.connect('mongodb://localhost/node_nonDesign_task2', {
@@ -39,7 +44,7 @@ app.get('/login', pageLoginController);
 app.get('/register', pageRegisterController);
 
 //post
-app.post('/form/register', storeRegisterController);
+app.post('/form/register', validationMiddleware, storeRegisterController);
 
 //server
 app.listen(3000, () => {
