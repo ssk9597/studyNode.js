@@ -32,7 +32,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //DB
-mongoose.connect('mongodb://localhost/node_nonDesign_task2', {
+mongoose.connect('mongodb://localhost/node_task2', {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
