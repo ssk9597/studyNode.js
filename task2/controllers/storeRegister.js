@@ -14,8 +14,7 @@ module.exports = (req, res) => {
 
     //errorExist
     if (!errors.isEmpty()) {
-        const errors_array = errors.array();
-        errorMessage = errors_array;
+        errorMessage = errors.array();
         return res.redirect('/register');
     }
 
