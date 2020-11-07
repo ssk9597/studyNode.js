@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="../public/styles/style.css" />
+    </head>
+    <body>
+        <h2 id="headline">ようこそ</h2>
+        <h3 id="genre"></h3>
+        <h3 id="difficulty"></h3>
+
+        <div id="message">以下のボタンをクリック</div>
+        <div class="btn-wrapper">
+            <button id="btn">
+                <a href="/start"> 開始 </a>
+            </button>
+        </div>
+        <ul>
+            <% for(let i = 0; i < items.length; i ++) { %>
+            <li>
+                <%= items[i].category %><br />
+                <%= items[i].type %><br />
+                <%= items[i].difficulty %><br />
+                <%= items[i].question %><br />
+                <%= items[i].correct_answer %><br />
+                <%= items[i].incorrect_answer %>
+            </li>
+            <br />
+            <% } %>
+        </ul>
+    </body>
+</html>
