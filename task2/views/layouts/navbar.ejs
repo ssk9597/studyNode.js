@@ -1,0 +1,19 @@
+<header class="flex justify-between p-5 border-b items-center">
+    <h1 class="font-semibold text-2xl leading-tight hover:opacity-50">
+        <a href="/"> Laravel </a>
+    </h1>
+    <div>
+        <% if(!username) { %>
+        <button class="mr-3 hover:opacity-50">
+            <a href="/login"> ログイン </a>
+        </button>
+        <button class="ml-3 hover:opacity-50">
+            <a href="/register"> 新規登録 </a>
+        </button>
+        <% } %> <% if(username) { %>
+        <button class="ml-3 hover:opacity-50">
+            <a href="/form/logout"> ログアウト </a>
+        </button>
+        <% } %>
+    </div>
+</header>
