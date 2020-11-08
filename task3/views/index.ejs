@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <title>Node.js課題③</title>
         <link rel="stylesheet" href="../public/styles/style.css" />
     </head>
     <body>
@@ -13,22 +13,12 @@
 
         <div id="message">以下のボタンをクリック</div>
         <div class="btn-wrapper">
-            <button id="btn">
-                <a href="/start"> 開始 </a>
-            </button>
+            <button id="btn">開始</button>
         </div>
-        <ul>
-            <% for(let i = 0; i < items.length; i ++) { %>
-            <li>
-                <%= items[i].category %><br />
-                <%= items[i].type %><br />
-                <%= items[i].difficulty %><br />
-                <%= items[i].question %><br />
-                <%= items[i].correct_answer %><br />
-                <%= items[i].incorrect_answer %>
-            </li>
-            <br />
-            <% } %>
-        </ul>
+        <div class="home-wrapper">
+            <a href=""><button class="hidden">ホームに戻る</button></a>
+        </div>
+        <div class="answer-wrapper"></div>
     </body>
+    <script type="module" src="../public/js/main.js"></script>
 </html>

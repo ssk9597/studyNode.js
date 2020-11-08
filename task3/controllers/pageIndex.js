@@ -1,3 +1,3 @@
 module.exports = (req, res) => {
-    res.render('index', { items: questionsArray });
+    res.render('index');
 };

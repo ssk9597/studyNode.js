@@ -12,10 +12,9 @@ module.exports = (req, res) => {
             json: true,
         },
         (err, req, data) => {
-            // console.log(data.results);
             questionsArray = data.results;
             console.log(questionsArray);
-            res.render('index', { items: questionsArray });
+            res.json(questionsArray);
         }
     );
 };
