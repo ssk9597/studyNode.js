@@ -1,3 +1,5 @@
+import { acquiring } from './acquiring.js';
+
 const btn = document.querySelector('#btn');
 
 btn.addEventListener('click', () => {
@@ -6,7 +8,6 @@ btn.addEventListener('click', () => {
     const genre = document.querySelector('#genre');
     const difficulty = document.querySelector('#difficulty');
     const message = document.querySelector('#message');
-    const btnWrapper = document.querySelector('.btn-wrapper');
     const homeWrapperABtn = document.querySelector('.home-wrapper > a > button');
     const answerWrapper = document.querySelector('.answer-wrapper');
     const answersActive = document.getElementsByClassName('active');
@@ -25,17 +26,6 @@ btn.addEventListener('click', () => {
 
     /* -------------------------- */
     /*  取得中の画面を出力させる  */
-    const acquiring = () => {
-        //h2の内容を書き換え
-        headline.innerHTML = '取得中';
-        //h3の内容を書き換え
-        message.innerHTML = '少々お待ちください';
-        //.btn-wrapperの中身をすべて消す
-        while (btnWrapper.firstChild) {
-            btnWrapper.removeChild(btnWrapper.firstChild);
-        }
-    };
-
     acquiring();
     /* -------------------------- */
 
