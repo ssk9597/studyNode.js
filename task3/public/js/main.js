@@ -18,9 +18,6 @@ btn.addEventListener('click', () => {
     //正答数を管理する変数
     let score = 0;
 
-    //createQuestionsArray()で使う空の配列、シャッフルされた要素をこちらに代入
-    let questionsArray = [];
-
     /* -------------------------- */
     /*  取得中の画面を出力させる  */
     acquiring();
@@ -32,38 +29,7 @@ btn.addEventListener('click', () => {
                 return res.json();
             })
             .then((questions) => {
-                /* -------------------------- */
-                /*  回答を作成する  */
-                //シャッフル
-                const shuffle = (arry) => {
-                    for (let i = arry.length - 1; i > 0; i--) {
-                        const r = Math.floor(Math.random() * (i + 1));
-                        //rとiを入れ替える
-                        [arry[r], arry[i]] = [arry[i], arry[r]];
-                    }
-                    //そのarryをreturnで返す
-                    return arry;
-                };
-
-                const createQuestionsArray = () => {
-                    //シャッフル
-                    const shuffleAnswers = shuffle(questions[quizNum].answers_array);
-
-                    questionsArray = [];
-                    for (let i = 0; i < shuffleAnswers.length; i++) {
-                        //correct_answerとanswers_arrayで取り出し方が異なるため標準化する
-                        if (shuffleAnswers[i].data) {
-                            questionsArray.push(shuffleAnswers[i].data);
-                        } else {
-                            questionsArray.push(shuffleAnswers[i]);
-                        }
-                    }
-
-                    console.log(questionsArray);
-                    return questionsArray;
-                };
-                /* -------------------------- */
-
+                console.log(questions);
                 /* -------------------------- */
                 /*  出力する  */
                 const outputQuiz = () => {
@@ -81,14 +47,14 @@ btn.addEventListener('click', () => {
                     difficulty.innerHTML = questions[quizNum].difficulty;
 
                     //回答ボタンを出力
-                    for (let i = 0; i < questionsArray.length; i++) {
+                    for (let i = 0; i < questions[quizNum].answers_array.length; i++) {
                         //ボタンタグを作る
                         const button = document.createElement('button');
                         //そのボタンに.activeをつける
                         button.classList.add('active');
 
                         //ボタンのテキストに代入する
-                        button.textContent = questionsArray[i];
+                        button.textContent = questions[quizNum].answers_array[i];
 
                         //.answer-wrapperの中に配置させる
                         answerWrapper.appendChild(button);
@@ -115,30 +81,30 @@ btn.addEventListener('click', () => {
 
                 /* -------------------------- */
                 /*  1問目  */
-                createQuestionsArray();
                 outputQuiz();
 
                 /*  2問目以降  */
                 answerWrapper.addEventListener('click', () => {
-                    quizNum++;
-                    createQuestionsArray();
-                    outputQuiz();
+                    if (quizNum === questions.length - 1) {
+                        announceResult();
+                    } else {
+                        quizNum++;
+                        outputQuiz();
 
-                    for (let i = 0; i < answersActive.length; i++) {
-                        //回答の正誤をチェック、正しければscoreに+1
-                        function checkAnswer() {
-                            if (answersActive[i].innerHTML === questions[quizNum].correct_answer) {
-                                score++;
-                            }
+                        for (let i = 0; i < answersActive.length; i++) {
+                            //回答の正誤をチェック、正しければscoreに+1
+                            const checkAnswer = () => {
+                                if (
+                                    answersActive[i].innerHTML === questions[quizNum].correct_answer
+                                ) {
+                                    score++;
+                                }
+                            };
+
+                            answersActive[i].addEventListener('click', () => {
+                                checkAnswer();
+                            });
                         }
-
-                        answersActive[i].addEventListener('click', () => {
-                            checkAnswer();
-
-                            if (quizNum === questions.length - 1) {
-                                announceResult();
-                            }
-                        });
                     }
                 });
                 /* -------------------------- */
