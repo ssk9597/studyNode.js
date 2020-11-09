@@ -12,9 +12,6 @@ btn.addEventListener('click', () => {
     const answerWrapper = document.querySelector('.answer-wrapper');
     const answersActive = document.getElementsByClassName('active');
 
-    //問題をこの配列に代入する
-    const quizArray = [];
-
     //arrayの0番目を取り出す、count_up
     let quizNum = 0;
 
@@ -35,41 +32,9 @@ btn.addEventListener('click', () => {
                 return res.json();
             })
             .then((questions) => {
-                for (let i = 0; i < questions.length; i++) {
-                    //関数outputAnswerCatalogの実行
-                    /* 目的 */
-                    /* quizArrayのincorrect_answersに値を代入する */
-                    const outputAnswerCatalog = () => {
-                        const answerArray = [];
-
-                        for (let v = 0; v < questions[i].incorrect_answers.length; v++) {
-                            const buttonText = document.createTextNode(
-                                questions[i].incorrect_answers[v]
-                            );
-                            answerArray.push(buttonText);
-                        }
-
-                        answerArray.push(questions[i].correct_answer);
-
-                        return answerArray;
-                    };
-                    /* -------------------------- */
-
-                    //配列quizObjectにまとめて、配列quizArrayに代入、これを繰り返す
-                    const quizObject = {
-                        category: '[ジャンル] ' + questions[i].category,
-                        correct_answer: questions[i].correct_answer,
-                        difficulty: '[難易度]  ' + questions[i].difficulty,
-                        incorrect_answers: outputAnswerCatalog(),
-                        question: questions[i].question,
-                    };
-                    quizArray.push(quizObject);
-                }
-
-                //check
-                console.log(quizArray);
-
-                //回答をシャッフルする
+                /* -------------------------- */
+                /*  回答を作成する  */
+                //シャッフル
                 const shuffle = (arry) => {
                     for (let i = arry.length - 1; i > 0; i--) {
                         const r = Math.floor(Math.random() * (i + 1));
@@ -81,12 +46,12 @@ btn.addEventListener('click', () => {
                 };
 
                 const createQuestionsArray = () => {
-                    //シャッフルさせる
-                    const shuffleAnswers = shuffle(quizArray[quizNum].incorrect_answers);
+                    //シャッフル
+                    const shuffleAnswers = shuffle(questions[quizNum].answers_array);
 
                     questionsArray = [];
                     for (let i = 0; i < shuffleAnswers.length; i++) {
-                        //correct_answerとincorrect_answersで取り出し方が異なるため標準化する
+                        //correct_answerとanswers_arrayで取り出し方が異なるため標準化する
                         if (shuffleAnswers[i].data) {
                             questionsArray.push(shuffleAnswers[i].data);
                         } else {
@@ -97,8 +62,10 @@ btn.addEventListener('click', () => {
                     console.log(questionsArray);
                     return questionsArray;
                 };
+                /* -------------------------- */
 
-                //問題を出力する関数outputQuiz
+                /* -------------------------- */
+                /*  出力する  */
                 const outputQuiz = () => {
                     while (answerWrapper.firstChild) {
                         answerWrapper.removeChild(answerWrapper.firstChild);
@@ -107,11 +74,11 @@ btn.addEventListener('click', () => {
                     //問題番号を出力
                     headline.innerHTML = '問題' + (quizNum + 1);
                     //問題文を出力
-                    message.innerHTML = quizArray[quizNum].question;
+                    message.innerHTML = questions[quizNum].question;
                     //ジャンルを出力
-                    genre.innerHTML = quizArray[quizNum].category;
+                    genre.innerHTML = questions[quizNum].category;
                     //難易度を出力
-                    difficulty.innerHTML = quizArray[quizNum].difficulty;
+                    difficulty.innerHTML = questions[quizNum].difficulty;
 
                     //回答ボタンを出力
                     for (let i = 0; i < questionsArray.length; i++) {
@@ -127,11 +94,10 @@ btn.addEventListener('click', () => {
                         answerWrapper.appendChild(button);
                     }
                 };
+                /* -------------------------- */
 
-                createQuestionsArray();
-                outputQuiz();
-
-                //10問終わった後の画面出力の内容
+                /* -------------------------- */
+                /*  最終画面  */
                 const announceResult = () => {
                     //出力すべき内容
                     headline.innerHTML = `あなたの正解数は、${score}です`;
@@ -145,7 +111,14 @@ btn.addEventListener('click', () => {
                     genre.innerHTML = '';
                     difficulty.innerHTML = '';
                 };
+                /* -------------------------- */
 
+                /* -------------------------- */
+                /*  1問目  */
+                createQuestionsArray();
+                outputQuiz();
+
+                /*  2問目以降  */
                 answerWrapper.addEventListener('click', () => {
                     quizNum++;
                     createQuestionsArray();
@@ -154,7 +127,7 @@ btn.addEventListener('click', () => {
                     for (let i = 0; i < answersActive.length; i++) {
                         //回答の正誤をチェック、正しければscoreに+1
                         function checkAnswer() {
-                            if (answersActive[i].innerHTML === quizArray[quizNum].correct_answer) {
+                            if (answersActive[i].innerHTML === questions[quizNum].correct_answer) {
                                 score++;
                             }
                         }
@@ -162,12 +135,13 @@ btn.addEventListener('click', () => {
                         answersActive[i].addEventListener('click', () => {
                             checkAnswer();
 
-                            if (quizNum === quizArray.length - 1) {
+                            if (quizNum === questions.length - 1) {
                                 announceResult();
                             }
                         });
                     }
                 });
+                /* -------------------------- */
             });
     })();
 });

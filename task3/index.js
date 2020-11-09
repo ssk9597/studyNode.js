@@ -9,6 +9,7 @@ const loadQuestionController = require('./controllers/loadQuestion');
 
 //global
 global.questionsArray = [];
+global.quizArray = [];
 
 //object
 const app = express();
