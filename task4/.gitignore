@@ -1,0 +1,5 @@
+mysql.env
+my.cnf
+app.env
+node_modules
+package-lock.json
