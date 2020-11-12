@@ -1,7 +1,7 @@
 const { check } = require('express-validator');
 
 module.exports = [
-    check('name').not().isEmpty().withMessage('ユーザー名は必須項目です'),
+    check('username').not().isEmpty().withMessage('ユーザー名は必須項目です'),
     check('email')
         .not()
         .isEmpty()
