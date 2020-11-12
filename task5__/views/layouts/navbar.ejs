@@ -1,0 +1,25 @@
+<header class="flex justify-between p-5 border-b items-center">
+    <h1 class="font-semibold text-2xl leading-tight hover:opacity-50">
+        <a href="/"> Node.js Lesson4 </a>
+    </h1>
+    <div>
+        <button class="mr-4 hover:opacity-50">
+            <a href="/"> みんなの投稿 </a>
+        </button>
+        <button class="mr-4 hover:opacity-50">
+            <a href="/post"> 投稿を作成 </a>
+        </button>
+        <% if (!activeUser) { %>
+        <button class="mr-4 hover:opacity-50">
+            <a href="/login"> ログイン </a>
+        </button>
+        <button class="mr-4 hover:opacity-50">
+            <a href="/register"> 新規登録 </a>
+        </button>
+        <% } %> <% if (activeUser) { %>
+        <button class="mr-4 hover:opacity-50">
+            <a href="/form/logout"> ログアウト </a>
+        </button>
+        <% } %>
+    </div>
+</header>
