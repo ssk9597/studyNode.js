@@ -9,6 +9,7 @@ const expressSession = require('express-session');
 const pageIndexController = require('./controllers/pageIndex');
 const pageLoginController = require('./controllers/pageLogin');
 const pageLogoutController = require('./controllers/pageLogout');
+const pagePostController = require('./controllers/pagePost');
 const pageRegisterController = require('./controllers/pageRegister');
 const storeRegisterController = require('./controllers/storeRegister');
 const storeLoginController = require('./controllers/storeLogin');
@@ -51,6 +52,7 @@ app.get('/', pageIndexController);
 app.get('/login', pageLoginController);
 app.get('/register', pageRegisterController);
 app.get('/form/logout', pageLogoutController);
+app.get('/post', pagePostController);
 
 //post
 app.post('/form/register', registerValidationMiddleware, storeRegisterController);
