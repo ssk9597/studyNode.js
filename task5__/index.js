@@ -53,12 +53,13 @@ app.use(
 app.get('/', jwtAuthMiddleware, pageIndexController);
 app.get('/login', pageLoginController);
 app.get('/register', pageRegisterController);
-app.get('/form/logout', jwtAuthMiddleware, pageLogoutController);
+app.get('/logout', jwtAuthMiddleware, pageLogoutController);
 app.get('/post', jwtAuthMiddleware, pagePostController);
 
 //post
-app.post('/form/register', registerValidationMiddleware, storeRegisterController);
-app.post('/form/login', loginValidationMiddleware, storeLoginController);
+app.post('/register', registerValidationMiddleware, storeRegisterController);
+// app.post('/login', loginValidationMiddleware, storeLoginController, jwtAuthMiddleware);
+app.post('/login', loginValidationMiddleware, storeLoginController);
 
 //server
 app.listen(3000, () => {

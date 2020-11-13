@@ -33,10 +33,10 @@ module.exports = (req, res) => {
                     confirmPassword: users[i].confirmPassword,
                 };
                 const token = jwt.sign(payload, 'secret');
-                // res.json({
-                //     token: token,
-                // });
-                res.redirect('/');
+                res.json({
+                    token: token,
+                });
+                // res.redirect('/');
             }
         }
     });
