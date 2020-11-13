@@ -1,1 +1,10 @@
-GET http://localhost:3000/
+POST http://localhost:3000/form/login
+Content-Type: application/json
+
+{
+    "email" : "aaa@gmail.com",
+    "password" : "aaaaaaa"
+}
+
+###
+GET http://localhost:3000/login
