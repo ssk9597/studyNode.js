@@ -4,6 +4,7 @@ const ejs = require('ejs');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const expressSession = require('express-session');
+const jwt = require('jsonwebtoken');
 
 //controllers
 const pageIndexController = require('./controllers/pageIndex');
@@ -15,6 +16,7 @@ const storeRegisterController = require('./controllers/storeRegister');
 const storeLoginController = require('./controllers/storeLogin');
 
 //middleware
+const jwtAuthMiddleware = require('./middleware/jwtAuth');
 const loginValidationMiddleware = require('./middleware/loginValidation');
 const registerValidationMiddleware = require('./middleware/registerValidation');
 
@@ -48,11 +50,11 @@ app.use(
 );
 
 //routing
-app.get('/', pageIndexController);
+app.get('/', jwtAuthMiddleware, pageIndexController);
 app.get('/login', pageLoginController);
 app.get('/register', pageRegisterController);
-app.get('/form/logout', pageLogoutController);
-app.get('/post', pagePostController);
+app.get('/form/logout', jwtAuthMiddleware, pageLogoutController);
+app.get('/post', jwtAuthMiddleware, pagePostController);
 
 //post
 app.post('/form/register', registerValidationMiddleware, storeRegisterController);

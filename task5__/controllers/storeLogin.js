@@ -1,6 +1,7 @@
 //modules
 const mysql = require('mysql');
 const { validationResult } = require('express-validator');
+const jwt = require('jsonwebtoken');
 
 module.exports = (req, res) => {
     //initialize
@@ -24,7 +25,18 @@ module.exports = (req, res) => {
         for (let i = 0; i < users.length; i++) {
             if (users[i].email == req.body.email && users[i].password == req.body.password) {
                 activeUser = users[i].username;
-                return res.redirect('/');
+                const payload = {
+                    id: users[i].id,
+                    username: users[i].username,
+                    email: users[i].email,
+                    password: users[i].password,
+                    confirmPassword: users[i].confirmPassword,
+                };
+                const token = jwt.sign(payload, 'secret');
+                // res.json({
+                //     token: token,
+                // });
+                res.redirect('/');
             }
         }
     });
