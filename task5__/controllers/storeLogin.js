@@ -35,18 +35,6 @@ module.exports = (req, res) => {
                 const token = jwt.sign(payload, 'secret');
                 res.setHeader('token', token);
                 res.render('index', { users: users });
-
-                // if (!token) {
-                //     return res.redirect('/login');
-                // }
-
-                // jwt.verify(token, 'secret', (err, decoded) => {
-                //     if (err) {
-                //         return res.redirect('/login');
-                //     }
-                //     req.decoded = decoded;
-                //     res.render('index', { token: token, users: users });
-                // });
             }
         }
     });

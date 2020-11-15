@@ -57,8 +57,8 @@ app.get('/logout', jwtAuthMiddleware, pageLogoutController);
 app.get('/post', jwtAuthMiddleware, pagePostController);
 
 //post
-app.post('/register', registerValidationMiddleware, storeRegisterController);
-app.post('/login', loginValidationMiddleware, storeLoginController);
+app.post('/register', registerValidationMiddleware, storeRegisterController, jwtAuthMiddleware);
+app.post('/login', loginValidationMiddleware, storeLoginController, jwtAuthMiddleware);
 
 //server
 app.listen(3000, () => {
