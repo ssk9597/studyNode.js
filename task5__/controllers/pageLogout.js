@@ -1,6 +1,6 @@
 module.exports = (req, res) => {
     req.session.destroy(() => {
-        activeUser = '';
+        // activeUser = '';
         res.redirect('/login');
     });
 };

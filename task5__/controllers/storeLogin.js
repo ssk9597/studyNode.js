@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 module.exports = (req, res) => {
     //initialize
     loginErrorMessage = [];
-    username = '';
+    // activeUser = '';
 
     //errorMessage
     const errors = validationResult(req);
@@ -24,7 +24,7 @@ module.exports = (req, res) => {
     con.query(sql, req.body, (err, users) => {
         for (let i = 0; i < users.length; i++) {
             if (users[i].email == req.body.email && users[i].password == req.body.password) {
-                activeUser = users[i].username;
+                // activeUser = users[i].username;
                 const payload = {
                     id: users[i].id,
                     username: users[i].username,

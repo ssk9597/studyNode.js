@@ -21,7 +21,7 @@ const loginValidationMiddleware = require('./middleware/loginValidation');
 const registerValidationMiddleware = require('./middleware/registerValidation');
 
 //global
-global.activeUser = '';
+// global.activeUser = '';
 global.loginErrorMessage = [];
 global.registerErrorMessage = [];
 

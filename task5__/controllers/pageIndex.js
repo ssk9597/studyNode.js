@@ -7,10 +7,10 @@ module.exports = (req, res) => {
 
     con.query(sql, (err, result, fields) => {
         if (err) throw err;
-        if (activeUser) {
-            res.render('index');
-        } else {
-            res.redirect('/login');
-        }
+        // if (activeUser) {
+        res.render('index');
+        // } else {
+        // res.redirect('/login');
+        // }
     });
 };
