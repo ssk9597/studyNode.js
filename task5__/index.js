@@ -58,6 +58,13 @@ app.get('/post', jwtAuthMiddleware, pagePostController);
 
 //post
 app.post('/register', registerValidationMiddleware, storeRegisterController, jwtAuthMiddleware);
+// app.post(
+//     '/register',
+//     registerValidationMiddleware,
+//     storeRegisterController,
+//     storeLoginController,
+//     jwtAuthMiddleware
+// );
 app.post('/login', loginValidationMiddleware, storeLoginController, jwtAuthMiddleware);
 
 //server

@@ -34,7 +34,8 @@ module.exports = (req, res) => {
                 };
                 const token = jwt.sign(payload, 'secret');
                 res.setHeader('token', token);
-                res.render('index');
+                // res.render('index');
+                res.redirect('/');
             }
         }
     });
