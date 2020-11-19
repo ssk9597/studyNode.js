@@ -50,7 +50,8 @@ app.use(
 );
 
 //routing
-app.get('/', jwtAuthMiddleware, pageIndexController);
+// app.get('/', jwtAuthMiddleware, pageIndexController);
+app.get('/', pageIndexController);
 app.get('/login', pageLoginController);
 app.get('/register', pageRegisterController);
 app.get('/logout', jwtAuthMiddleware, pageLogoutController);
@@ -58,14 +59,8 @@ app.get('/post', jwtAuthMiddleware, pagePostController);
 
 //post
 app.post('/register', registerValidationMiddleware, storeRegisterController, jwtAuthMiddleware);
-// app.post(
-//     '/register',
-//     registerValidationMiddleware,
-//     storeRegisterController,
-//     storeLoginController,
-//     jwtAuthMiddleware
-// );
-app.post('/login', loginValidationMiddleware, storeLoginController, jwtAuthMiddleware);
+app.post('/login', loginValidationMiddleware, storeLoginController);
+// app.post('/login', loginValidationMiddleware, storeLoginController, jwtAuthMiddleware);
 
 //server
 app.listen(3000, () => {
