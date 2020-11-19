@@ -5,7 +5,6 @@ const { validationResult } = require('express-validator');
 module.exports = (req, res) => {
     //initialize
     registerErrorMessage = [];
-    // activeUser = '';
 
     //errorMessage
     const errors = validationResult(req);
@@ -21,7 +20,6 @@ module.exports = (req, res) => {
     const sql = 'INSERT INTO users SET ?';
     con.query(sql, req.body, (err, result, fields) => {
         if (err) throw err;
-        // activeUser = req.body.username;
         res.redirect('/');
     });
 };

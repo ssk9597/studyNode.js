@@ -16,5 +16,14 @@
                 </div>
             </div>
         </div>
+        <script>
+            fetch('http://localhost:3000', {
+                headers: {
+                    token: 'token',
+                },
+            }).then((res) => {
+                console.log(res.headers.get('token'));
+            });
+        </script>
     </body>
 </html>

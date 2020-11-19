@@ -3,7 +3,9 @@ const mysql = require('mysql');
 
 module.exports = (req, res) => {
     console.log('-----------------');
+    console.log('pageIndex');
     console.log(req.headers);
+    console.log(req.headers.token);
     console.log('-----------------');
 
     const con = require('../database/createConnection');
@@ -11,10 +13,6 @@ module.exports = (req, res) => {
 
     con.query(sql, (err, result, fields) => {
         if (err) throw err;
-        // if (activeUser) {
         res.render('index');
-        // } else {
-        // res.redirect('/login');
-        // }
     });
 };

@@ -5,6 +5,7 @@ const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const expressSession = require('express-session');
 const jwt = require('jsonwebtoken');
+const fetch = require('node-fetch');
 
 //controllers
 const pageIndexController = require('./controllers/pageIndex');
@@ -21,7 +22,6 @@ const loginValidationMiddleware = require('./middleware/loginValidation');
 const registerValidationMiddleware = require('./middleware/registerValidation');
 
 //global
-// global.activeUser = '';
 global.loginErrorMessage = [];
 global.registerErrorMessage = [];
 
