@@ -2,7 +2,7 @@
 const jwt = require('jsonwebtoken');
 
 module.exports = (req, res, next) => {
-    token = req.session.token;
+    const token = req.session.token;
     if (!token) {
         return res.redirect('/login');
     }

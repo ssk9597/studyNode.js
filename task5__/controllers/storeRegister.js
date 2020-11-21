@@ -2,7 +2,7 @@
 const mysql = require('mysql');
 const { validationResult } = require('express-validator');
 
-module.exports = (req, res) => {
+module.exports = (req, res, next) => {
     //initialize
     registerErrorMessage = [];
 
@@ -20,6 +20,6 @@ module.exports = (req, res) => {
     const sql = 'INSERT INTO users SET ?';
     con.query(sql, req.body, (err, result, fields) => {
         if (err) throw err;
-        res.redirect('/');
+        next();
     });
 };
