@@ -5,7 +5,7 @@ const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const expressSession = require('express-session');
 const jwt = require('jsonwebtoken');
-const fetch = require('node-fetch');
+const cookieParser = require('cookie-parser');
 
 //controllers
 const pageIndexController = require('./controllers/pageIndex');
@@ -48,6 +48,7 @@ app.use(
         },
     })
 );
+app.use(cookieParser());
 
 //routing
 // app.get('/', jwtAuthMiddleware, pageIndexController);

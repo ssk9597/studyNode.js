@@ -4,8 +4,8 @@ const mysql = require('mysql');
 module.exports = (req, res) => {
     console.log('-----------------');
     console.log('pageIndex');
+    console.log(req.session);
     console.log(req.headers);
-    console.log(req.headers.token);
     console.log('-----------------');
 
     const con = require('../database/createConnection');
