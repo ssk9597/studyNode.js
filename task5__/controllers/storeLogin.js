@@ -1,5 +1,4 @@
 //modules
-const mysql = require('mysql');
 const { validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
 
