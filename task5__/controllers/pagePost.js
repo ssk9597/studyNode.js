@@ -1,3 +1,4 @@
 module.exports = (req, res) => {
-    res.render('post');
+    const token = req.session.token;
+    res.render('post', { token: token });
 };

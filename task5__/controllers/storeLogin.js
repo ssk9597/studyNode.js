@@ -31,8 +31,8 @@ module.exports = (req, res) => {
                     confirmPassword: users[i].confirmPassword,
                 };
                 const token = jwt.sign(payload, 'secret');
-                // res.setHeader('token', token);
-                // res.redirect('/');
+                req.session.token = token;
+                res.redirect('/');
             }
         }
     });

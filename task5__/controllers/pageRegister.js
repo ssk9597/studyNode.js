@@ -1,3 +1,4 @@
 module.exports = (req, res) => {
-    res.render('register', { errorMessage: registerErrorMessage });
+    const token = req.session.token;
+    res.render('register', { errorMessage: registerErrorMessage, token: token });
 };
