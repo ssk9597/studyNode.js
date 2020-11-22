@@ -6,22 +6,27 @@ const expressSession = require('express-session');
 const cookieParser = require('cookie-parser');
 
 //controllers
+//pages
 const pageIndexController = require('./controllers/pageIndex');
 const pageLoginController = require('./controllers/pageLogin');
 const pageLogoutController = require('./controllers/pageLogout');
 const pagePostController = require('./controllers/pagePost');
 const pageRegisterController = require('./controllers/pageRegister');
+//store
 const storeRegisterController = require('./controllers/storeRegister');
 const storeLoginController = require('./controllers/storeLogin');
+const storePostController = require('./controllers/storePost');
 
 //middleware
 const jwtAuthMiddleware = require('./middleware/jwtAuth');
 const loginValidationMiddleware = require('./middleware/loginValidation');
 const registerValidationMiddleware = require('./middleware/registerValidation');
+const postValidationMiddleware = require('./middleware/postValidation');
 
 //global
 global.loginErrorMessage = [];
 global.registerErrorMessage = [];
+global.postErrorMessage = [];
 
 //Object
 const app = express();
@@ -58,6 +63,7 @@ app.get('/post', jwtAuthMiddleware, pagePostController);
 //post
 app.post('/register', registerValidationMiddleware, storeRegisterController, storeLoginController);
 app.post('/login', loginValidationMiddleware, storeLoginController);
+app.post('/post', postValidationMiddleware, storePostController);
 
 //server
 app.listen(3000, () => {
