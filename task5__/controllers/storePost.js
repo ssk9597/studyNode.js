@@ -1,7 +1,7 @@
 //modules
 const { validationResult } = require('express-validator');
 
-module.exports = (req, res, next) => {
+module.exports = (req, res) => {
     //initialize
     postErrorMessage = [];
 
@@ -19,7 +19,6 @@ module.exports = (req, res, next) => {
     const sql = 'INSERT INTO contents SET ?';
     con.query(sql, req.body, (err, result, fields) => {
         if (err) throw err;
-        console.log(result);
-        // next();
+        res.redirect('/');
     });
 };
