@@ -21,7 +21,7 @@ module.exports = (req, res) => {
 
     con.query(sql, req.body, (err, users) => {
         for (let i = 0; i < users.length; i++) {
-            if (users[i].email == req.body.email && users[i].password == req.body.password) {
+            if (users[i].email === req.body.email && users[i].password === req.body.password) {
                 const payload = {
                     id: users[i].id,
                     username: users[i].username,
