@@ -12,10 +12,12 @@ const pageLoginController = require('./controllers/pageLogin');
 const pageLogoutController = require('./controllers/pageLogout');
 const pagePostController = require('./controllers/pagePost');
 const pageRegisterController = require('./controllers/pageRegister');
+const pageEditController = require('./controllers/pageEdit');
 //store
 const storeRegisterController = require('./controllers/storeRegister');
 const storeLoginController = require('./controllers/storeLogin');
 const storePostController = require('./controllers/storePost');
+const storeEditController = require('./controllers/storeEdit');
 
 //middleware
 const jwtAuthMiddleware = require('./middleware/jwtAuth');
@@ -59,11 +61,13 @@ app.get('/login', pageLoginController);
 app.get('/register', pageRegisterController);
 app.get('/logout', jwtAuthMiddleware, pageLogoutController);
 app.get('/post', jwtAuthMiddleware, pagePostController);
+app.get('/edit/:id', jwtAuthMiddleware, pageEditController);
 
 //post
 app.post('/register', registerValidationMiddleware, storeRegisterController, storeLoginController);
 app.post('/login', loginValidationMiddleware, storeLoginController);
 app.post('/post', postValidationMiddleware, storePostController);
+app.post('/edit/:id', postValidationMiddleware, storeEditController);
 
 //server
 app.listen(3000, () => {
