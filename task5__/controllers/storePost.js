@@ -16,8 +16,9 @@ module.exports = (req, res) => {
 
     //DB
     const con = require('../database/createConnection');
-    const sql =
-        'INSERT INTO posts SET ? SELECT * FROM posts JOIN users ON posts.user_id = users.id';
+    const username = req.session.username;
+    const sql = `INSERT INTO posts (title, content,user_id) SELECT "${req.body.title}", "${req.body.content}", id FROM users WHERE users.username = "${username}"`;
+
     con.query(sql, req.body, (err, result, fields) => {
         if (err) throw err;
         console.log(result);
