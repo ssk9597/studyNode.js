@@ -21,7 +21,6 @@ module.exports = (req, res) => {
 
     con.query(sql, req.body, (err, result, fields) => {
         if (err) throw err;
-        console.log(result);
         res.redirect('/');
     });
 };

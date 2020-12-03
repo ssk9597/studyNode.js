@@ -6,14 +6,14 @@ module.exports = (req, res) => {
 
     con.query(sql, (err, result, fields) => {
         if (err) throw err;
-        for (let i = 0; i < result.length; i++) {
-            if (result[i].id == req.params.id) {
+        result.forEach((val) => {
+            if (val.id === Number(req.params.id)) {
                 res.render('edit', {
                     errorMessage: postErrorMessage,
                     token: token,
-                    post: result[i],
+                    post: val,
                 });
             }
-        }
+        });
     });
 };
