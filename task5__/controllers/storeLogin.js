@@ -17,11 +17,11 @@ module.exports = (req, res) => {
 
     //DB
     const con = require('../database/createConnection');
-    const sql = 'select * from users';
+    const sql = 'SELECT * FROM users';
 
     con.query(sql, req.body, (err, users) => {
         for (let i = 0; i < users.length; i++) {
-            if (users[i].email == req.body.email && users[i].password == req.body.password) {
+            if (users[i].email === req.body.email && users[i].password === req.body.password) {
                 const payload = {
                     id: users[i].id,
                     username: users[i].username,
@@ -31,6 +31,7 @@ module.exports = (req, res) => {
                 };
                 const token = jwt.sign(payload, 'secret');
                 req.session.token = token;
+                req.session.username = payload.username;
                 res.redirect('/');
             }
         }

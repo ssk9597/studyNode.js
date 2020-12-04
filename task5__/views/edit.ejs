@@ -13,13 +13,14 @@
                     <div class="w-9/12 border bg-white">
                         <div class="my-16 text-center">
                             <h2 class="text-4xl font-bold">投稿</h2>
-                            <form action="/post" method="POST" class="mt-12">
+                            <form action="/edit/<%= post.id %>" method="POST" class="mt-12">
                                 <div class="mb-5">
                                     <input
                                         type="text"
                                         placeholder="タイトル"
                                         name="title"
                                         class="text-xl w-7/12 p-2 border rounded"
+                                        value="<%= post.title %>"
                                     />
                                 </div>
                                 <div class="mb-8">
@@ -28,6 +29,7 @@
                                         placeholder="コンテンツ"
                                         name="content"
                                         class="text-xl w-7/12 p-3 border rounded h-32 outline-none py-1 px-3 resize-none"
+                                        value="<%= post.content %>"
                                     >
                                     </textarea>
                                 </div>
@@ -43,7 +45,7 @@
                                     type="submit"
                                     class="mb-3 text-xl w-4/12 bg-blue-800 text-white py-2 rounded hover:opacity-75"
                                 >
-                                    新規投稿
+                                    変更する
                                 </button>
                             </form>
                         </div>
