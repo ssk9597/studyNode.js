@@ -43,9 +43,14 @@
                                                     >編集する
                                                 </a>
                                                 <% } %>
-                                                <div class="inline-flex btn">
-                                                    <span
-                                                        class="text-gray-600 inline-flex items-center leading-none text-sm"
+                                                <form
+                                                    class="inline-flex btn"
+                                                    action="/likes"
+                                                    method="POST"
+                                                >
+                                                    <button
+                                                        class="text-black inline-flex items-center leading-none text-sm"
+                                                        type="submit"
                                                     >
                                                         <svg
                                                             xmlns="http://www.w3.org/2000/svg"
@@ -67,8 +72,8 @@
                                                             />
                                                         </svg>
                                                         <%= contents[i].like %>
-                                                    </span>
-                                                </div>
+                                                    </button>
+                                                </form>
                                             </div>
                                             <a class="inline-flex items-center">
                                                 <img
@@ -93,31 +98,22 @@
                 </div>
             </div>
         </div>
-        <div id="div1" class="none"><%= username %></div>
-        <div id="div2" class="none"><%= con %></div>
 
         <script>
             const btn = document.querySelectorAll('.btn');
-            const username = document.getElementById('div1').innerText;
-            const con = document.getElementById('div2').innerText;
 
             btn.forEach((btn) => {
                 btn.addEventListener('click', () => {
-                    //DB操作
-                    const sql = `UPDATE likes JOIN posts_likes ON likes.id = posts_likes.like.id JOIN posts ON posts.id = posts_likes.post_id JOIN users ON users.id = posts.user_id SET like = ${
-                        Number(btn.innerText) + 1
-                    } WHERE users.username = "${username}"`;
-                    con.query(sql, (err, result, fields) => {
-                        if (err) throw err;
-                        console.log(result);
-                        console.log(fields);
-                    });
-
                     //色付け
                     const btnSpanSvg = document.querySelectorAll('.btn > span > svg');
                     for (let i = 0; i < btnSpanSvg.length; i++) {
                         btnSpanSvg[i].addEventListener('click', () => {
                             btnSpanSvg[i].classList.toggle('likes');
+                            if (btnSpanSvg[i].classList.contains('likes')) {
+                                //DB増加する
+                            } else {
+                                //DB減少する
+                            }
                         });
                     }
                 });

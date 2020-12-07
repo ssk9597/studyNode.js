@@ -18,6 +18,7 @@ const storeRegisterController = require('./controllers/storeRegister');
 const storeLoginController = require('./controllers/storeLogin');
 const storePostController = require('./controllers/storePost');
 const storeEditController = require('./controllers/storeEdit');
+const storeLikesController = require('./controllers/storeLikes');
 
 //middleware
 const jwtAuthMiddleware = require('./middleware/jwtAuth');
@@ -68,6 +69,7 @@ app.post('/register', registerValidationMiddleware, storeRegisterController, sto
 app.post('/login', loginValidationMiddleware, storeLoginController);
 app.post('/post', postValidationMiddleware, storePostController);
 app.post('/edit/:id', postValidationMiddleware, storeEditController);
+app.post('/likes', storeLikesController);
 
 //server
 app.listen(3000, () => {

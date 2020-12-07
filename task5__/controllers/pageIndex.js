@@ -8,7 +8,10 @@ module.exports = (req, res) => {
 
     con.query(sql, (err, result, fields) => {
         if (err) throw err;
-        // console.log(result);
-        res.render('index', { token: token, username: username, contents: result, con: con });
+        res.render('index', {
+            token: token,
+            username: username,
+            contents: result,
+        });
     });
 };
