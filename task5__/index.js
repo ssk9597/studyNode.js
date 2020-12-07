@@ -70,8 +70,8 @@ app.post('/register', registerValidationMiddleware, storeRegisterController, sto
 app.post('/login', loginValidationMiddleware, storeLoginController);
 app.post('/post', postValidationMiddleware, storePostController);
 app.post('/edit/:id', postValidationMiddleware, storeEditController);
-app.post('/addLikes', storeAddLikesController);
-app.post('/removeLikes', storeRemoveLikesController);
+app.post('/addLikes/:id', storeAddLikesController);
+app.post('/removeLikes/:id', storeRemoveLikesController);
 
 //server
 app.listen(3000, () => {

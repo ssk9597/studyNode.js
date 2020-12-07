@@ -34,10 +34,11 @@
                                                     href="/edit/<%= contents[i].id %>"
                                                     >編集する
                                                 </a>
-                                                <% } %> <% if (likes === "likes") { %>
+                                                <% } %> <% if (contents[i].like_id == id && likes
+                                                === "likes") { %>
                                                 <form
                                                     class="inline-flex btn"
-                                                    action="/removeLikes"
+                                                    action="/removeLikes/<%= contents[i].like_id %>"
                                                     method="POST"
                                                 >
                                                     <button
@@ -69,7 +70,7 @@
                                                 <% } else { %>
                                                 <form
                                                     class="inline-flex btn"
-                                                    action="/addLikes"
+                                                    action="/addLikes/<%= contents[i].like_id %>"
                                                     method="POST"
                                                 >
                                                     <button

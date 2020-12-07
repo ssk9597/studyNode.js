@@ -2,7 +2,7 @@ module.exports = (req, res) => {
     const token = req.session.token;
     const username = req.session.username;
     const likes = req.session.likes;
-    console.log(likes);
+    const id = req.session.idNum;
 
     const con = require('../database/createConnection');
     const sql =
@@ -10,12 +10,12 @@ module.exports = (req, res) => {
 
     con.query(sql, (err, result, fields) => {
         if (err) throw err;
-        console.log(result);
         res.render('index', {
             token,
             username,
             contents: result,
             likes,
+            id,
         });
     });
 };
