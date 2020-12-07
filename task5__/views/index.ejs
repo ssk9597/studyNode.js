@@ -2,14 +2,6 @@
 <html lang="ja">
     <!-- head -->
     <%- include("layouts/head") %>
-    <style>
-        .none {
-            display: none;
-        }
-        .likes {
-            fill: black;
-        }
-    </style>
 
     <body>
         <div class="flex flex-col h-screen">
@@ -42,10 +34,42 @@
                                                     href="/edit/<%= contents[i].id %>"
                                                     >編集する
                                                 </a>
-                                                <% } %>
+                                                <% } %> <% if (likes === "likes") { %>
                                                 <form
                                                     class="inline-flex btn"
-                                                    action="/likes"
+                                                    action="/removeLikes"
+                                                    method="POST"
+                                                >
+                                                    <button
+                                                        class="text-black inline-flex items-center leading-none text-sm"
+                                                        type="submit"
+                                                    >
+                                                        <svg
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            width="18px"
+                                                            height="18px"
+                                                            stroke="currentColor"
+                                                            stroke-width="2"
+                                                            fill="black"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            viewBox="0 0 24 24"
+                                                            class="mr-1"
+                                                        >
+                                                            <path
+                                                                stroke-linecap="round"
+                                                                stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                                                            />
+                                                        </svg>
+                                                        <%= contents[i].like %>
+                                                    </button>
+                                                </form>
+                                                <% } else { %>
+                                                <form
+                                                    class="inline-flex btn"
+                                                    action="/addLikes"
                                                     method="POST"
                                                 >
                                                     <button
@@ -74,6 +98,7 @@
                                                         <%= contents[i].like %>
                                                     </button>
                                                 </form>
+                                                <% } %>
                                             </div>
                                             <a class="inline-flex items-center">
                                                 <img
@@ -98,26 +123,5 @@
                 </div>
             </div>
         </div>
-
-        <script>
-            const btn = document.querySelectorAll('.btn');
-
-            btn.forEach((btn) => {
-                btn.addEventListener('click', () => {
-                    //色付け
-                    const btnSpanSvg = document.querySelectorAll('.btn > span > svg');
-                    for (let i = 0; i < btnSpanSvg.length; i++) {
-                        btnSpanSvg[i].addEventListener('click', () => {
-                            btnSpanSvg[i].classList.toggle('likes');
-                            if (btnSpanSvg[i].classList.contains('likes')) {
-                                //DB増加する
-                            } else {
-                                //DB減少する
-                            }
-                        });
-                    }
-                });
-            });
-        </script>
     </body>
 </html>

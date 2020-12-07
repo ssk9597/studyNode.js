@@ -1,6 +1,5 @@
 module.exports = (req, res) => {
     const username = req.session.username;
-    console.log(username);
 
     const con = require('../database/createConnection');
 
@@ -9,6 +8,7 @@ module.exports = (req, res) => {
 
     con.query(sql, (err, result, fields) => {
         if (err) throw err;
-        // res.redirect('/');
+        req.session.likes = 'likes';
+        res.redirect('/');
     });
 };
