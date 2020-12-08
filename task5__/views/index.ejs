@@ -34,31 +34,72 @@
                                                     href="/edit/<%= contents[i].id %>"
                                                     >編集する
                                                 </a>
-                                                <% } %>
-                                                <span
-                                                    class="text-gray-600 inline-flex items-center leading-none text-sm"
+                                                <% } %> <% if (contents[i].like_id == id && likes
+                                                === "likes") { %>
+                                                <form
+                                                    class="inline-flex btn"
+                                                    action="/removeLikes/<%= contents[i].like_id %>"
+                                                    method="POST"
                                                 >
-                                                    <svg
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        width="18px"
-                                                        height="18px"
-                                                        stroke="currentColor"
-                                                        stroke-width="2"
-                                                        fill="none"
-                                                        stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                        viewBox="0 0 24 24"
-                                                        class="mr-1"
+                                                    <button
+                                                        class="text-black inline-flex items-center leading-none text-sm"
+                                                        type="submit"
                                                     >
-                                                        <path
+                                                        <svg
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            width="18px"
+                                                            height="18px"
+                                                            stroke="currentColor"
+                                                            stroke-width="2"
+                                                            fill="black"
                                                             stroke-linecap="round"
                                                             stroke-linejoin="round"
+                                                            viewBox="0 0 24 24"
+                                                            class="mr-1"
+                                                        >
+                                                            <path
+                                                                stroke-linecap="round"
+                                                                stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                                                            />
+                                                        </svg>
+                                                        <%= contents[i].like %>
+                                                    </button>
+                                                </form>
+                                                <% } else { %>
+                                                <form
+                                                    class="inline-flex btn"
+                                                    action="/addLikes/<%= contents[i].like_id %>"
+                                                    method="POST"
+                                                >
+                                                    <button
+                                                        class="text-black inline-flex items-center leading-none text-sm"
+                                                        type="submit"
+                                                    >
+                                                        <svg
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            width="18px"
+                                                            height="18px"
+                                                            stroke="currentColor"
                                                             stroke-width="2"
-                                                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                                                        />
-                                                    </svg>
-                                                    0
-                                                </span>
+                                                            fill="none"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            viewBox="0 0 24 24"
+                                                            class="mr-1"
+                                                        >
+                                                            <path
+                                                                stroke-linecap="round"
+                                                                stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                                                            />
+                                                        </svg>
+                                                        <%= contents[i].like %>
+                                                    </button>
+                                                </form>
+                                                <% } %>
                                             </div>
                                             <a class="inline-flex items-center">
                                                 <img
